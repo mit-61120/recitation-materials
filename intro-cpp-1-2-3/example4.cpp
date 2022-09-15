@@ -13,7 +13,7 @@
 #include <algorithm>
 
 void birthday2(User &user) {
-    user.age;
+    user.age++;
 }
 /*
 bool operator<(const User &u, const User &u2) {
