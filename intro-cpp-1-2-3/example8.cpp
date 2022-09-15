@@ -11,7 +11,8 @@
 class Console {
 public:
     std::string name;
-    void print(const std::string &str) {
+    template <typename T>
+    void print(const T &str) {
         std::cout << name << ": " << str << std::endl;
     };
 };
