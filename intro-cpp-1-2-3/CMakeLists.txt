@@ -12,3 +12,6 @@ add_executable(example4 example4-prompt.cpp User.cpp)
 add_executable(example5 example5.cpp)
 add_executable(example6 example6.cpp)
 add_executable(example7 example7.cpp)
+
+add_executable(example8-prompt example8-prompt.cpp)
+add_executable(example8 example8.cpp)

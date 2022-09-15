@@ -1,3 +1,9 @@
+/**
+ * Example 7:
+ * - std::unique_ptr
+ * - move semantics with unique ptr
+ */
+
 #include "ObnoxiousObject.h"
 
 #include <iostream>

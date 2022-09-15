@@ -1,3 +1,7 @@
+/**
+ * Example 6:
+ * - copy & move semantics
+ */
 #include "ObnoxiousObject.h"
 #include <iostream>
 
