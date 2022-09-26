@@ -16,6 +16,7 @@ void doSomethingElse(const ObnoxiousObject &obj) {
 int main() {
     ObnoxiousObject objA;
     auto objB = objA;
+    objB = objA;
 
     auto objC = std::move(objA);
 
@@ -24,4 +25,7 @@ int main() {
 
     doSomething(ObnoxiousObject{});
     doSomethingElse(ObnoxiousObject{});
+
+    // raw pointer
+    // ObnoxiousObject *obj = new ObnoxiousObject;
 }

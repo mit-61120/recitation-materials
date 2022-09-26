@@ -34,5 +34,9 @@ int main() {
     auto objD = std::make_unique<ObnoxiousObject>();
 
     auto objE = doSomething(std::move(objD));
-    auto objF = doSomethingElse(std::move(objD));
+    auto objF = doSomethingElse(std::move(objE));
+
+    // better
+    doSomething(*objD);
+    doSomethingElse(*objD);
 }
