@@ -8,7 +8,9 @@ void PrettyPrinter::print_indent() {
 void PrettyPrinter::visit(const ast::Global &op) {
     // Nothing to recurse on.
     print_indent();
-    stream << "global " << op._name << ";\n";
+    stream << "global ";
+    op._name->accept(*this);
+    stream << ";\n";
 }
 
 void PrettyPrinter::visit(const ast::IfElse &op) {
@@ -34,7 +36,8 @@ void PrettyPrinter::visit(const ast::IfElse &op) {
 
 void PrettyPrinter::visit(const ast::Assignment &op) {
     print_indent();
-    stream << op._name << " = ";
+    op._lhs->accept(*this);
+    stream << " = ";
     op._value->accept(*this);
     stream << ";\n";
 }
@@ -43,8 +46,14 @@ void PrettyPrinter::visit(const ast::Int &op) {
     stream << op._value;
 }
 
-void PrettyPrinter::visit(const ast::Var &op) {
+void PrettyPrinter::visit(const ast::Name &op) {
     stream << op._name;
+}
+
+void PrettyPrinter::visit(const ast::FieldDereference &op) {
+    op.base->accept(*this);
+    stream << ".";
+    op.field->accept(*this);
 }
 
 void PrettyPrinter::visit(const ast::BinOp &op) {

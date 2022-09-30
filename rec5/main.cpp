@@ -1,6 +1,6 @@
 #include "ast/AST.h"
 #include "PrettyPrinter.h"
-#include "FindGlobals.h"
+#include "execute/FindGlobals.h"
 #include <iostream>
 
 template<typename T, typename ...Args>
@@ -10,18 +10,22 @@ auto make(Args &&...args) {
 
 int main(int argc, char *argv[]) {
     using namespace ast;
-    auto a_plus_one = make<BinOp>(BinOp::Op::Add, make<Var>("a"), make<Int>(1));
+    auto a_plus_one = make<BinOp>(BinOp::Op::Add, make<Name>("a"), make<Int>(1));
     auto b = make<BinOp>(BinOp::Op::Mul, std::move(a_plus_one), make<Int>(1));
 
     ptr<Statement> statements[]{
-            make<Global>("x"),
-            make<Assignment>("a", make<Int>(1)),
+            make<Global>(make<Name>("x")),
+            make<Assignment>(make<Name>("a"), make<Int>(1)),
+            make<Assignment>(
+                    make<FieldDereference>(make<Name>("y"), make<Name>("size")),
+                    make<Int>(1)
+            ),
             make<IfElse>(
-                    make<BinOp>(BinOp::Op::Eq, make<Var>("a"), make<Int>(4)),
-                    make<Assignment>("a", make<BinOp>(
+                    make<BinOp>(BinOp::Op::Eq, make<Name>("a"), make<Int>(4)),
+                    make<Assignment>(make<Name>("a"), make<BinOp>(
                             BinOp::Op::Sub, make<Int>(3), std::move(b))
                     ),
-                    make<Global>("a")
+                    make<Global>(make<Name>("a"))
             )
     };
 

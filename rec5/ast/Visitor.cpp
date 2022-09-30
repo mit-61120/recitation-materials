@@ -23,8 +23,13 @@ void ast::RecursiveVisitor::visit(const ast::IfElse &op) {
     }
 }
 
-void ast::RecursiveVisitor::visit(const ast::Var &op) {
+void ast::RecursiveVisitor::visit(const ast::Name &op) {
 
+}
+
+void ast::RecursiveVisitor::visit(const ast::FieldDereference &op) {
+    op.base->accept(*this);
+    op.field->accept(*this);
 }
 
 void ast::RecursiveVisitor::visit(const ast::Int &op) {

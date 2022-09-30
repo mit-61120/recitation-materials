@@ -34,10 +34,30 @@ namespace ast {
     struct Expr : virtual Node {
     };
 
-    struct Global : Statement, NodeImpl<Global> {
+    struct LHS : Expr {
+    };
+
+    struct Name : LHS, NodeImpl<Name> {
         std::string _name;
 
-        explicit Global(std::string name) : _name(std::move(name)) {}
+        explicit Name(std::string name) : _name(std::move(name)) {}
+
+        ~Name() override = default;
+    };
+
+    struct FieldDereference : LHS, NodeImpl<FieldDereference> {
+        ptr <LHS> base;
+        ptr<Name> field;
+
+        FieldDereference(ptr <ast::LHS> base, ptr<Name> field) : base(std::move(base)), field(std::move(field)) {}
+
+        ~FieldDereference() override = default;
+    };
+
+    struct Global : Statement, NodeImpl<Global> {
+        ptr<Name> _name;
+
+        explicit Global(ptr<Name> name) : _name(std::move(name)) {}
 
         ~Global() override = default;
     };
@@ -62,11 +82,11 @@ namespace ast {
     };
 
     struct Assignment : Statement, NodeImpl<Assignment> {
-        const std::string _name;
-        ptr<Expr> _value;
+        ptr <LHS> _lhs;
+        ptr <Expr> _value;
 
-        Assignment(std::string name, ptr<Expr> value)
-                : _name(std::move(name)), _value(std::move(value)) {}
+        Assignment(ptr <LHS> lhs, ptr <Expr> value)
+                : _lhs(std::move(lhs)), _value(std::move(value)) {}
 
         ~Assignment() override = default;
     };
@@ -77,14 +97,6 @@ namespace ast {
         explicit Int(int32_t value) : _value(value) {}
 
         ~Int() override = default;
-    };
-
-    struct Var final : Expr, NodeImpl<Var> {
-        const std::string _name;
-
-        explicit Var(std::string name) : _name(std::move(name)) {}
-
-        ~Var() override = default;
     };
 
     struct BinOp : public Expr, NodeImpl<BinOp> {

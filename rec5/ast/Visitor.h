@@ -9,20 +9,24 @@ namespace ast {
     struct IfElse;
 
     struct Int;
-    struct Var;
+    struct Name;
+    struct FieldDereference;
     struct BinOp;
 
-    using Visitor = util::Visitor<Global, Sequence, Assignment, IfElse, Int, Var, BinOp>;
+    using Visitor = util::Visitor<Global, Sequence, Assignment, IfElse, Int, Name, FieldDereference, BinOp>;
 
     class RecursiveVisitor : public Visitor {
     public:
         void visit(const ast::Global &op) override;
         void visit(const ast::Sequence &op) override;
-        void visit(const ast::Assignment &op) override;
+
+        virtual void visit(const ast::Assignment &op) override;
         void visit(const ast::IfElse &op) override;
 
-        // Exprs
-        void visit(const ast::Var &op) override;
+        virtual // Exprs
+        void visit(const ast::Name &op) override;
+
+        virtual void visit(const ast::FieldDereference &op) override;
         void visit(const ast::Int &op) override;
         void visit(const ast::BinOp &op) override;
     };
