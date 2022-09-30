@@ -20,13 +20,12 @@ namespace ast {
         void visit(const ast::Global &op) override;
         void visit(const ast::Sequence &op) override;
 
-        virtual void visit(const ast::Assignment &op) override;
+        void visit(const ast::Assignment &op) override;
         void visit(const ast::IfElse &op) override;
 
-        virtual // Exprs
+        // Exprs
         void visit(const ast::Name &op) override;
-
-        virtual void visit(const ast::FieldDereference &op) override;
+        void visit(const ast::FieldDereference &op) override;
         void visit(const ast::Int &op) override;
         void visit(const ast::BinOp &op) override;
     };
