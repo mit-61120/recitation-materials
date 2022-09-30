@@ -8,7 +8,6 @@
 #include <vector>
 #include <string>
 
-
 namespace ast {
 
     template<typename T>

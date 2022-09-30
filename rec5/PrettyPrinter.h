@@ -1,9 +1,10 @@
 #pragma once
 
-#include <iostream>
-#include <string>
 #include "ast/Visitor.h"
 #include "ast/AST.h"
+
+#include <iostream>
+#include <string>
 
 struct PrettyPrinter final : public ast::RecursiveVisitor {
     explicit PrettyPrinter(std::ostream &_stream) : stream(_stream) {}
