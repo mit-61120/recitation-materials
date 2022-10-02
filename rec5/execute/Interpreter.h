@@ -18,6 +18,8 @@ struct Record : public Value {
 class Interpreter : public ast::RecursiveVisitor {
 private:
     Value* result;
+    bool write;
+    std::map<std::string, Value*>::iterator writeTo;
 
     // in your code, define a proper class; it needs a parent pointer and it can change during function calls.
     std::map<std::string, Value*> frame;
