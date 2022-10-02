@@ -11,6 +11,10 @@ struct Integer : public Value {
     int32_t value;
 };
 
+struct Record : public Value {
+    std::map<std::string, Value*> values;
+};
+
 class Interpreter : public ast::RecursiveVisitor {
 private:
     Value* result;
