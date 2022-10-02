@@ -12,6 +12,7 @@ void ast::RecursiveVisitor::visit(const ast::Sequence &op) {
 }
 
 void ast::RecursiveVisitor::visit(const ast::Assignment &op) {
+    op._lhs->accept(*this);
     op._value->accept(*this);
 }
 
