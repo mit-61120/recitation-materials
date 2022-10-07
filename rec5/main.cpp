@@ -1,6 +1,7 @@
 #include "ast/AST.h"
 #include "PrettyPrinter.h"
 #include "execute/FindGlobals.h"
+#include "execute/Interpreter.h"
 
 #include <iostream>
 
@@ -46,5 +47,7 @@ int main(int argc, char *argv[]) {
         std::cout << "found global: " << g << "\n";
     }
 
+    Interpreter interpreter;
+    body->accept(interpreter);
     return 0;
 }

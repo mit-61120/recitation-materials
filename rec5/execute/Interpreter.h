@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ast/Visitor.h"
+#include "LValueResolver.h"
 
 #include <map>
 #include <string>
@@ -18,11 +19,12 @@ struct Record : public Value {
 class Interpreter : public ast::RecursiveVisitor {
 private:
     Value* result;
-    bool write;
-    std::map<std::string, Value*>::iterator writeTo;
 
     // in your code, define a proper class; it needs a parent pointer and it can change during function calls.
     std::map<std::string, Value*> frame;
+    friend class LValueResolver;
+
+    LValueResolver lValueResolver{*this};
 
 public:
     void visit(const ast::Assignment &op) override;
