@@ -1,0 +1,6 @@
+java -Xmx500M -cp "bin/antlr-4.7.2-complete.jar:" org.antlr.v4.Tool -Dlanguage=Cpp MITScript.g
+g++ -std=c++17 -Wno-attributes -Isrc -Iinclude -I. src/AST.cpp -c -o build/AST.o
+g++ -std=c++17 -Wno-attributes -Isrc -Iinclude -I. src/Visitor.cpp -c -o build/Visitor.o
+g++ -std=c++17 -Wno-attributes -Isrc -Iinclude -I. src/Parser.cpp -c -o build/Parser.o
+g++ -std=c++17 -Wno-attributes -Isrc -Iinclude -I. src/CFG.cpp -c -o build/CFG.o
+g++ -std=c++17 -Wno-attributes -Isrc -Iinclude -I. main.cpp  build/AST.o  build/Visitor.o  build/Parser.o  build/CFG.o MITScript.cpp lib/libantlr4-runtime.a -o main

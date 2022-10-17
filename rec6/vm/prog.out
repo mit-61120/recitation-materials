@@ -1,0 +1,73 @@
+0x55fe9d722700
+======================
+load_const	0
+store_global	0
+----------------------
+true: 0x55fe9d722830
+false: 0
+======================
+
+0x55fe9d722830
+======================
+load_global	0
+load_const	1
+eq
+----------------------
+true: 0x55fe9d722900
+false: 0x55fe9d7226b0
+======================
+
+0x55fe9d722900
+======================
+load_const	2
+load_global	0
+mul
+store_global	1
+----------------------
+true: 0x55fe9d7226b0
+false: 0
+======================
+
+0x55fe9d7226b0
+======================
+----------------------
+true: 0x55fe9d722ad0
+false: 0
+======================
+
+0x55fe9d722ad0
+======================
+load_const	3
+store_global	2
+----------------------
+true: 0
+false: 0
+======================
+
+
+function
+{
+	functions = [],
+	constants = [4, 5, 6, 7],
+	parameter_count = 0,
+	local_vars = [],
+	local_ref_vars = [],
+	free_vars = [],
+	names = [x, p, y],
+	instructions = 
+	[
+		load_const	0
+		store_global	0
+		load_global	0
+		load_const	1
+		eq
+		not
+		if	5
+		load_const	2
+		load_global	0
+		mul
+		store_global	1
+		load_const	3
+		store_global	2
+	]
+}
