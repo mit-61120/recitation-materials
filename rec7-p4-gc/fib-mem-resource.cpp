@@ -65,7 +65,7 @@ int main(int argc, const char *argv[]) {
         fib.push_back(fib[i - 1] + fib[i - 2]);
     }
 
-    assert(fib[2] == 1);
+    assert(N < 2 || fib[2] == 1);
     assert(fib.size() == N + 1);
 
     std::cout << N << "th fibonacci number mod 2^32:" << fib[N] << std::endl;

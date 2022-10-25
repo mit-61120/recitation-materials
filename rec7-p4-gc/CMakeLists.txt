@@ -21,5 +21,7 @@ endif()
 
 add_executable(fib fib.cpp)
 add_executable(fib-mem-resource fib-mem-resource.cpp)
+add_executable(fib-alloc fib-alloc.cpp)
 target_link_libraries(fib argparse)
 target_link_libraries(fib-alloc argparse)
+target_link_libraries(fib-mem-resource argparse)
