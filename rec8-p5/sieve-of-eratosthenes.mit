@@ -1,0 +1,19 @@
+N = 300000;
+i = 2;
+primes = {};
+x = "";
+
+while (i < N) {
+    if (primes[i] == None) {
+        primes[i] = true;
+        x = x + i + ";";
+        j = i;
+        while (j < N) {
+            primes[j] = false;
+            j = j + i;
+        }
+    }
+    i = i + 1;
+}
+
+print(x);
