@@ -9,36 +9,33 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 int main() {
-    cout << "What's your name?" << endl;
+  std::cout << "What's your name?" << std::endl;
 
-    string name;
-    cin >> name;
+  std::string name;
+  std::cin >> name;
 
-    cout << "Hello, " << name << "." << endl;
+  std::cout << "Hello, " << name << "." << std::endl;
 
-    if (name == "Luka") {
-        cout << "I know you!" << endl;
-    }
+  if (name == "Luka") {
+    std::cout << "I know you!" << std::endl;
+  }
 
-    vector<int> elements{0, 1, 1, 2, 3, 5, 8, 13};
+  std::vector<int> elements{0, 1, 1, 2, 3, 5, 8, 13};
 
-    for (auto element: elements) {
-        cout << element << " ";
-    }
-    cout << std::endl;
+  for (auto element : elements) {
+    std::cout << element << " ";
+  }
+  std::cout << std::endl;
 
+  int number = -5;  // 32 bits but varies by platform. if you need exact value,
+                    // use specific types
+  unsigned long long largeNumber =
+      5;  // non-negative with maximum size (64-bits)
+  bool logical = false;
+  char character = 'a';                    // 8 bits
+  float realNumber = 0.3f;                 // 32-bit IEEE floating-point
+  double realNumberDoublePrecision = 5.3;  // 64-bit IEEE floating-point
 
-
-    int number = -5; // 32 bits but varies by platform. if you need exact value, use specific types
-    unsigned long long largeNumber = 5; // non-negative with maximum size (64-bits)
-    bool logical = false;
-    char character = 'a'; // 8 bits
-    float realNumber = 0.3f; // 32-bit IEEE floating-point
-    double realNumberDoublePrecision = 5.3; // 64-bit IEEE floating-point
-
-
-    return 0;
+  return 0;
 }

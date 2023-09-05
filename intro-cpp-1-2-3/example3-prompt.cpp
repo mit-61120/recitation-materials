@@ -4,16 +4,16 @@
  * - for-range loop (reference)
  * - lambdas?
  */
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 int main() {
-    // feeling fancy
-    std::cout << "Enter a word you want printed in Latin: ";
+  // feeling fancy
+  std::cout << "Enter a word you want printed in Latin: ";
 
-    std::string input;
-    std::cin >> input;
+  std::string input;
+  std::cin >> input;
 
-    //
-    // std::cout << ??;
+  //
+  // std::cout << ??;
 }
