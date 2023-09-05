@@ -1,8 +1,8 @@
 #pragma once
 
-#include "types.h"
 #include "CFG.h"
 #include "CFGBuilder.h"
+#include "types.h"
 
 namespace CFG {
 

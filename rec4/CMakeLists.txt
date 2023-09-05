@@ -1,7 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+
 project(rec6)
 
-cmake_minimum_required(VERSION 3.18)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 include_directories(. src)
 add_compile_options(-Wno-attributes)
@@ -10,6 +11,7 @@ add_compile_options(-Wno-attributes)
 add_custom_command(
         OUTPUT ${CMAKE_CURRENT_LIST_DIR}/MITScript.cpp
         COMMAND java -Xmx500M -cp "bin/antlr-4.7.2-complete.jar:${CLASSPATH}" org.antlr.v4.Tool -Dlanguage=Cpp MITScript.g
+        COMMAND sed -i 's/u8//g' MITScript.cpp
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
         DEPENDS MITScript.g
 )

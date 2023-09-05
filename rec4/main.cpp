@@ -1,11 +1,11 @@
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
-#include "antlr4-runtime.h"
-#include "MITScript.h"
 #include "AST.h"
-#include "Parser.h"
 #include "CFGBuilder.h"
+#include "MITScript.h"
+#include "Parser.h"
+#include "antlr4-runtime.h"
 #include "compile.h"
 #include "prettyprinter.h"
 
@@ -17,7 +17,7 @@ shared_ptr<Program> ParseProgram(antlr4::CommonTokenStream &tokens) {
     shared_ptr<Program> program = parser.ParseProgram();
     bool failed = parser.failed();
 
-    if(failed) {
+    if (failed) {
       throw SystemException("Failed to parse.");
     } else {
       return program;
@@ -27,23 +27,20 @@ shared_ptr<Program> ParseProgram(antlr4::CommonTokenStream &tokens) {
   }
 }
 
-int main(int argc, const char *argv[])
-{
+int main(int argc, const char *argv[]) {
   // We will now have the interpreter take the input
   // program from a file
-  if (argc != 2)
-  {
-    std::cout <<"Usage: mitscript <filename>\n";
+  if (argc != 2) {
+    std::cout << "Usage: mitscript <filename>\n";
     return 1;
   }
 
   std::ifstream file;
   file.open(argv[1]);
 
-  if (!file.is_open())
-  { 
-      std::cout <<"Failed to open file: " <<argv[1] <<"\n";
-      return 1;
+  if (!file.is_open()) {
+    std::cout << "Failed to open file: " << argv[1] << "\n";
+    return 1;
   }
 
   // Create lexer
@@ -59,12 +56,10 @@ int main(int argc, const char *argv[])
   try {
     program = ParseProgram(tokens);
 
-
   } catch (SystemException &se) {
     cerr << se.msg_ << endl;
     return 1;
   }
-
 
   if (program == nullptr) {
     // Print error messages if you'd like
@@ -72,13 +67,13 @@ int main(int argc, const char *argv[])
     return 1;
   }
 
-	CFG::Builder builder;
-	program->accept(&builder);
-	std::cout << *builder.cfg << std::endl;
+  CFG::Builder builder;
+  program->accept(&builder);
+  std::cout << *builder.cfg << std::endl;
 
   Function compiled = CFG::compile(builder);
-	PrettyPrinter().print(compiled, std::cout);
-	std::cout << std::endl;
+  PrettyPrinter().print(compiled, std::cout);
+  std::cout << std::endl;
 
   return 0;
 }
