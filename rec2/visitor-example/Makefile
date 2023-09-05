@@ -1,4 +1,4 @@
-CXX := g++ -std=c++17
+CXX := g++ -std=c++20
 FLAGS := -Wno-attributes
 
 BUILD_DIR := bin

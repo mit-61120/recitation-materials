@@ -32,10 +32,11 @@ std::unique_ptr<ObnoxiousObject> doSomethingElse(
 int main() {
   auto objD = std::make_unique<ObnoxiousObject>();
 
-  auto objE = doSomething(std::move(objD));
-  auto objF = doSomethingElse(std::move(objE));
-
-  // better
+  std::cout << "Pass by copy" << std::endl;
   doSomething(*objD);
   doSomethingElse(*objD);
+
+  std::cout << "Pass by move" << std::endl;
+  auto objE = doSomething(std::move(objD));
+  auto objF = doSomethingElse(std::move(objE));
 }

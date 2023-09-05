@@ -7,8 +7,8 @@ class User {
   std::string name;
   unsigned int age;
 
-  void birthday();
+  void birthday() { age++; };
   bool operator<(const User &other) const {
-    return name < other.name || age < other.age;
+    return name < other.name || (name == other.name && age < other.age);
   }
 };

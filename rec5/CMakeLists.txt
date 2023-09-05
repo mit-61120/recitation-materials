@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(rec7_p4_gc)
+project(main CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
