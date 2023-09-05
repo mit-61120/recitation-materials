@@ -23,7 +23,7 @@ target_include_directories(MITScriptGrammar PUBLIC include)
 
 ##################################################
 
-add_executable(main main.cpp
+add_executable(mitscript main.cpp
         utils.cpp
 
         src/AST.cpp
@@ -34,6 +34,6 @@ add_executable(main main.cpp
         src/compile.cpp
         )
 
-target_link_libraries(main MITScriptGrammar)
+target_link_libraries(mitscript MITScriptGrammar)
 
 
