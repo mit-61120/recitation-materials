@@ -34,5 +34,7 @@ public:
     void visit(const ast::FieldDereference &op) override;
 
     void visit(const ast::Int &op) override;
+
+    void visit(const ast::Record &op) override;
 };
 
